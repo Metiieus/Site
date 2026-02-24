@@ -1,17 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { MessageCircle, Phone } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const WHATSAPP_NUMBER = '5511999999999';
+const WHATSAPP_MESSAGE = 'Olá! Gostaria de fazer um pedido/orçamento.';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export default function Newsletter() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -31,87 +31,54 @@ export default function Newsletter() {
         }
       );
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setEmail('');
-      }, 3000);
-    }
-  };
-
   return (
     <section
+      id="contact"
       ref={sectionRef}
-      className="relative py-20 lg:py-32 bg-[#f2fe6f] scanlines overflow-hidden"
+      className="relative py-20 lg:py-32 bg-[#ffde59] scanlines overflow-hidden"
     >
       <div className="absolute inset-0 opacity-10">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 10px,
-              rgba(0,0,0,0.1) 10px,
-              rgba(0,0,0,0.1) 20px
-            )`,
+            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px)`,
           }}
         />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div ref={contentRef} className="max-w-2xl mx-auto text-center">
+        <div ref={contentRef} className="max-w-3xl mx-auto text-center">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-black mb-4">
-            ENTRE PARA O M² VERSE
+            PRONTO PARA PEDIR?
           </h2>
-          <p className="text-black/70 text-base sm:text-lg font-body mb-8">
-            Receba lançamentos exclusivos, conteúdo dos bastidores e acesso antecipado a
-            edições limitadas.
+          <p className="text-black/70 text-base sm:text-lg font-body mb-10">
+            Entre em contato pelo WhatsApp para fazer seu pedido, solicitar um orçamento personalizado ou tirar dúvidas. Respondemos rapidamente!
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <div className="flex-1 relative">
-              <Input
-                type="email"
-                placeholder="Digite seu email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-14 px-6 bg-black text-white border-0 rounded-full font-accent placeholder:text-white/50 focus:ring-2 focus:ring-black"
-                disabled={isSubmitted}
-              />
-            </div>
-            <Button
-              type="submit"
-              className={`h-14 px-8 rounded-full font-semibold transition-all duration-300 ${
-                isSubmitted
-                  ? 'bg-green-500 text-white'
-                  : 'bg-black text-[#f2fe6f] hover:bg-[#1c1c1c]'
-              }`}
-              disabled={isSubmitted}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-black text-[#ffde59] hover:bg-[#1c1c1c] px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              {isSubmitted ? (
-                <>
-                  <Check className="w-5 h-5 mr-2" />
-                  Inscrito!
-                </>
-              ) : (
-                <>
-                  Inscrever
-                  <Send className="w-5 h-5 ml-2" />
-                </>
-              )}
-            </Button>
-          </form>
+              <MessageCircle className="w-6 h-6" />
+              Falar no WhatsApp
+            </a>
+            <a
+              href="tel:+5511999999999"
+              className="flex items-center gap-3 border-2 border-black text-black hover:bg-black hover:text-[#ffde59] px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
+            >
+              <Phone className="w-6 h-6" />
+              Ligar Agora
+            </a>
+          </div>
 
-          <p className="text-black/50 text-sm font-accent mt-4">
-            Sem spam, cancele quando quiser. Junte-se a mais de 10.000 colecionadores.
+          <p className="text-black/50 text-sm font-accent mt-8">
+            Atendimento rápido e personalizado. Faça seu pedido com facilidade!
           </p>
         </div>
       </div>

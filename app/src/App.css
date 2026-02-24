@@ -7,13 +7,13 @@ html {
 
 /* Selection color */
 ::selection {
-  background-color: rgba(242, 254, 111, 0.3);
+  background-color: rgba(255, 222, 89, 0.3);
   color: white;
 }
 
 /* Custom focus styles */
 *:focus-visible {
-  outline: 2px solid #f2fe6f;
+  outline: 2px solid #ffde59;
   outline-offset: 2px;
 }
 
@@ -46,10 +46,10 @@ a {
 /* Animation utilities */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(242, 254, 111, 0.3);
+    box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(242, 254, 111, 0.6);
+    box-shadow: 0 0 40px rgba(255, 222, 89, 0.6);
   }
 }
 
@@ -76,7 +76,7 @@ a {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #f2fe6f 0%, #fff 100%);
+  background: linear-gradient(135deg, #ffde59 0%, #fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

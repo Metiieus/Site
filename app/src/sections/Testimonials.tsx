@@ -88,15 +88,15 @@ export default function Testimonials() {
       id="testimonials"
       className="relative py-20 lg:py-32 bg-[#1c1c1c] grain-overlay overflow-hidden"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#f2fe6f]/5 rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ffde59]/5 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 lg:mb-16">
-          <p className="text-[#f2fe6f] font-accent text-sm tracking-[0.3em] uppercase mb-4">
+          <p className="text-[#ffde59] font-accent text-sm tracking-[0.3em] uppercase mb-4">
             Depoimentos
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white">
-            O QUE DIZEM OS COLECIONADORES
+            O QUE DIZEM NOSSOS CLIENTES
           </h2>
         </div>
 
@@ -113,7 +113,7 @@ export default function Testimonials() {
                 onClick={() => setActiveIndex(index)}
               >
                 <div className="bg-[#252525] rounded-2xl p-6 sm:p-8 border border-white/5">
-                  <Quote className="w-10 h-10 text-[#f2fe6f]/30 mb-4" />
+                  <Quote className="w-10 h-10 text-[#ffde59]/30 mb-4" />
 
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -121,7 +121,7 @@ export default function Testimonials() {
                         key={i}
                         className={`w-5 h-5 ${
                           i < testimonial.rating
-                            ? 'text-[#f2fe6f] fill-[#f2fe6f]'
+                            ? 'text-[#ffde59] fill-[#ffde59]'
                             : 'text-[#777777]'
                         }`}
                       />
@@ -136,13 +136,13 @@ export default function Testimonials() {
                     <img
                       src={testimonial.avatar}
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-[#f2fe6f]"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-[#ffde59]"
                     />
                     <div>
                       <p className="text-white font-accent font-semibold">
                         {testimonial.name}
                       </p>
-                      <p className="text-[#777777] text-sm">Colecionador M² Verse</p>
+                      <p className="text-[#777777] text-sm">Cliente M² Personalizados</p>
                     </div>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default function Testimonials() {
               variant="outline"
               size="icon"
               onClick={prevSlide}
-              className="border-white/20 text-white hover:bg-white/10 hover:border-[#f2fe6f]"
+              className="border-white/20 text-white hover:bg-white/10 hover:border-[#ffde59]"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -163,7 +163,7 @@ export default function Testimonials() {
               variant="outline"
               size="icon"
               onClick={nextSlide}
-              className="border-white/20 text-white hover:bg-white/10 hover:border-[#f2fe6f]"
+              className="border-white/20 text-white hover:bg-white/10 hover:border-[#ffde59]"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
@@ -176,7 +176,7 @@ export default function Testimonials() {
                 onClick={() => setActiveIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === activeIndex
-                    ? 'w-8 bg-[#f2fe6f]'
+                    ? 'w-8 bg-[#ffde59]'
                     : 'bg-white/30 hover:bg-white/50'
                 }`}
               />

@@ -27,7 +27,7 @@
     --ring: 68 99% 71%;
     --radius: 0.625rem;
     
-    --neon-yellow: #f2fe6f;
+    --neon-yellow: #ffde59;
     --dark-charcoal: #1c1c1c;
     --off-white: #fcfcfc;
     --medium-gray: #777777;
@@ -199,15 +199,15 @@
   }
   
   .glow-neon {
-    box-shadow: 0 0 20px rgba(242, 254, 111, 0.5),
-                0 0 40px rgba(242, 254, 111, 0.3),
-                0 0 60px rgba(242, 254, 111, 0.1);
+    box-shadow: 0 0 20px rgba(255, 222, 89, 0.5),
+                0 0 40px rgba(255, 222, 89, 0.3),
+                0 0 60px rgba(255, 222, 89, 0.1);
   }
   
   .text-glow-neon {
-    text-shadow: 0 0 10px rgba(242, 254, 111, 0.8),
-                 0 0 20px rgba(242, 254, 111, 0.5),
-                 0 0 30px rgba(242, 254, 111, 0.3);
+    text-shadow: 0 0 10px rgba(255, 222, 89, 0.8),
+                 0 0 20px rgba(255, 222, 89, 0.5),
+                 0 0 30px rgba(255, 222, 89, 0.3);
   }
   
   .card-3d {

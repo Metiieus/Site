@@ -1,9 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { X, Star, ShoppingCart, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { X, Star, MessageCircle } from 'lucide-react';
 import type { Product } from '@/types';
-import { useCartStore } from '@/store/cartStore';
+const WHATSAPP_NUMBER = '5511999999999';
+const getWhatsAppURL = (productName: string) => {
+  const msg = `Olá! Tenho interesse no produto: ${productName}. Poderia me passar mais informações e o orçamento?`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+};
 
 interface QuickViewModalProps {
   product: Product | null;
@@ -15,8 +18,6 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const { addItem } = useCartStore();
-
   useEffect(() => {
     if (isOpen && product) {
       document.body.style.overflow = 'hidden';
@@ -52,13 +53,6 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
       });
     }
   }, [isOpen, product]);
-
-  const handleAddToCart = () => {
-    if (product) {
-      addItem(product);
-      onClose();
-    }
-  };
 
   if (!product) return null;
 
@@ -96,7 +90,7 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-bold ${
                       product.badge === 'Mais Vendido'
-                        ? 'bg-[#f2fe6f] text-black'
+                        ? 'bg-[#ffde59] text-black'
                         : product.badge === 'Novo'
                         ? 'bg-blue-500 text-white'
                         : 'bg-red-500 text-white'
@@ -114,7 +108,7 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
             </div>
 
             <div className="p-6 md:p-8 flex flex-col">
-              <p className="text-[#f2fe6f] font-accent text-sm uppercase tracking-wider mb-2">
+              <p className="text-[#ffde59] font-accent text-sm uppercase tracking-wider mb-2">
                 {product.category}
               </p>
               <h2 className="font-display text-3xl md:text-4xl text-white mb-4">
@@ -128,7 +122,7 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
                       key={i}
                       className={`w-5 h-5 ${
                         i < Math.floor(product.rating)
-                          ? 'text-[#f2fe6f] fill-[#f2fe6f]'
+                          ? 'text-[#ffde59] fill-[#ffde59]'
                           : 'text-[#777777]'
                       }`}
                     />
@@ -140,7 +134,7 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
               </div>
 
               <div className="flex items-center gap-4 mb-6">
-                <span className="font-display text-3xl text-[#f2fe6f]">
+                <span className="font-display text-3xl text-[#ffde59]">
                   R${product.price.toFixed(2)}
                 </span>
                 {product.originalPrice && (
@@ -170,21 +164,15 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
               </div>
 
               <div className="flex gap-4">
-                <Button
-                  onClick={handleAddToCart}
-                  disabled={!product.inStock}
-                  className="flex-1 bg-[#f2fe6f] text-black hover:bg-[#e5f160] font-semibold py-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                <a
+                  href={getWhatsAppURL(product.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#ffde59] text-black hover:bg-[#f5d44e] font-semibold py-4 rounded-md transition-all duration-300"
                 >
-                  <ShoppingCart className="w-5 h-5 mr-2" />
-                  Adicionar ao Carrinho
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10"
-                >
-                  <Check className="w-5 h-5 mr-2" />
-                  Lista de Desejos
-                </Button>
+                  <MessageCircle className="w-5 h-5" />
+                  Pedir Orçamento via WhatsApp
+                </a>
               </div>
             </div>
           </div>

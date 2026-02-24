@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Hero() {
@@ -144,8 +144,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#1c1c1c] via-[#0a0a0a] to-[#1c1c1c]" />
 
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#f2fe6f]/5 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[#f2fe6f]/5 rounded-full blur-[150px] animate-pulse delay-1000" />
+        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#ffde59]/5 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[#ffde59]/5 rounded-full blur-[150px] animate-pulse delay-1000" />
       </div>
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
@@ -162,56 +162,57 @@ export default function Hero() {
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <p
               ref={subtitleRef}
-              className="text-[#f2fe6f] font-accent text-sm tracking-[0.3em] uppercase mb-4"
+              className="text-[#ffde59] font-accent text-sm tracking-[0.3em] uppercase mb-4"
             >
-              Bem-vindo ao M² Verse
+              Bem-vindo ao M² Personalizados
             </p>
 
             <h1
               ref={titleRef}
               className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-none mb-6"
             >
-              FIGURAS
-              <span className="block text-[#f2fe6f]">3D PREMIUM</span>
+              PRODUTOS
+              <span className="block text-[#ffde59]">PERSONALIZADOS</span>
             </h1>
 
             <p
               ref={descRef}
               className="text-[#777777] text-base sm:text-lg max-w-md mx-auto lg:mx-0 mb-8 font-body"
             >
-              Descubra o universo dos colecionáveis de alta fidelidade. 
-              Modelos exclusivos, edições limitadas e a melhor qualidade para sua coleção.
+              Explore nosso catálogo, escolha o que você quer e entre em contato pelo WhatsApp para fazer seu pedido ou solicitar um orçamento personalizado.
             </p>
 
             <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 onClick={scrollToProducts}
-                className="bg-[#f2fe6f] text-black hover:bg-[#e5f160] font-semibold px-8 py-6 text-base magnetic-button group"
+                className="bg-[#ffde59] text-black hover:bg-[#f5d44e] font-semibold px-8 py-6 text-base magnetic-button group"
               >
-                Explorar Coleção
+                Ver Catálogo
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-base magnetic-button"
+              <a
+                href={`https://wa.me/5511999999999?text=${encodeURIComponent('Olá! Gostaria de fazer um pedido/orçamento.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 border border-white/20 text-white hover:bg-white/10 px-8 py-6 text-base magnetic-button rounded-md font-semibold transition-all duration-300"
               >
-                <Play className="mr-2 w-5 h-5" />
-                Assistir Trailer
-              </Button>
+                <MessageCircle className="w-5 h-5" />
+                Pedir Orçamento
+              </a>
             </div>
 
             <div className="flex gap-8 mt-12 justify-center lg:justify-start">
               <div className="text-center">
-                <p className="font-display text-3xl sm:text-4xl text-[#f2fe6f]">50+</p>
-                <p className="text-[#777777] text-sm font-accent">Designs Únicos</p>
+                <p className="font-display text-3xl sm:text-4xl text-[#ffde59]">50+</p>
+                <p className="text-[#777777] text-sm font-accent">Produtos Únicos</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl sm:text-4xl text-[#f2fe6f]">10K+</p>
-                <p className="text-[#777777] text-sm font-accent">Colecionadores</p>
+                <p className="font-display text-3xl sm:text-4xl text-[#ffde59]">100%</p>
+                <p className="text-[#777777] text-sm font-accent">Personalizado</p>
               </div>
               <div className="text-center">
-                <p className="font-display text-3xl sm:text-4xl text-[#f2fe6f]">100%</p>
-                <p className="text-[#777777] text-sm font-accent">Premium</p>
+                <p className="font-display text-3xl sm:text-4xl text-[#ffde59]">★★★★★</p>
+                <p className="text-[#777777] text-sm font-accent">Avaliação</p>
               </div>
             </div>
           </div>
@@ -222,17 +223,17 @@ export default function Hero() {
               className="relative preserve-3d"
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="absolute inset-0 bg-[#f2fe6f]/20 blur-[100px] rounded-full scale-75" />
+              <div className="absolute inset-0 bg-[#ffde59]/20 blur-[100px] rounded-full scale-75" />
               <img
-                src="/hero-figure.jpg"
-                alt="Figura de Ação 3D"
-                className="relative z-10 w-full max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-2xl"
+                src="/logo.png"
+                alt="M² Personalizados"
+                className="relative z-10 w-full max-w-sm lg:max-w-md xl:max-w-lg drop-shadow-2xl"
               />
-              <div className="absolute -right-4 top-1/4 bg-[#f2fe6f] text-black px-4 py-2 rounded-full font-accent text-sm font-bold animate-bounce">
+              <div className="absolute -right-4 top-1/4 bg-[#ffde59] text-black px-4 py-2 rounded-full font-accent text-sm font-bold animate-bounce">
                 NOVO
               </div>
               <div className="absolute -left-4 bottom-1/4 bg-white text-black px-4 py-2 rounded-full font-accent text-sm font-bold animate-bounce delay-500">
-                3D
+                100%
               </div>
             </div>
           </div>

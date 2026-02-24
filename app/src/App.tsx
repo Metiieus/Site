@@ -2,21 +2,14 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { AuthProvider } from './contexts/AuthContext';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
 import Products from './sections/Products';
 import About from './sections/About';
 import Testimonials from './sections/Testimonials';
-import Blog from './sections/Blog';
 import Newsletter from './sections/Newsletter';
 import Footer from './sections/Footer';
-import CartDrawer from './sections/CartDrawer';
 import QuickViewModal from './sections/QuickViewModal';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import BlogList from './pages/BlogList';
-import BlogArticle from './pages/BlogArticle';
 import type { Product } from './types';
 import './App.css';
 
@@ -57,11 +50,9 @@ function HomePage() {
         <Products onQuickView={handleQuickView} />
         <About />
         <Testimonials />
-        <Blog />
         <Newsletter />
       </main>
       <Footer />
-      <CartDrawer />
       <QuickViewModal
         product={quickViewProduct}
         isOpen={isQuickViewOpen}
@@ -83,20 +74,14 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen bg-[#1c1c1c] grain-overlay">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/blog" element={<BlogList />} />
-            <Route path="/blog/:id" element={<BlogArticle />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-[#1c1c1c] grain-overlay">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -131,23 +131,21 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div ref={contentRef}>
-            <p className="text-[#f2fe6f] font-accent text-sm tracking-[0.3em] uppercase mb-4">
+            <p className="text-[#ffde59] font-accent text-sm tracking-[0.3em] uppercase mb-4">
               Quem Somos
             </p>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
-              O UNIVERSO
-              <span className="block text-[#f2fe6f]">M² VERSE</span>
+              NOSSA
+              <span className="block text-[#ffde59]">HISTÓRIA</span>
             </h2>
             <div className="space-y-4 text-[#777777] font-body text-base sm:text-lg mb-8">
               <p>
-                O M² Verse nasceu da paixão por colecionáveis de alta qualidade. 
-                Somos uma equipe de artistas 3D e entusiastas dedicados a criar 
-                figuras de ação que transcendem o comum.
+                O M² Personalizados nasceu da paixão por criar produtos únicos e personalizados de alta qualidade. 
+                Somos uma equipe dedicada a transformar suas ideias em produtos incríveis.
               </p>
               <p>
-                Cada peça em nossa coleção é cuidadosamente esculpida, pintada à mão 
-                e produzida em edições limitadas. Não vendemos apenas figuras – 
-                oferecemos portais para universos extraordinários.
+                Cada produto é criado com atenção aos detalhes e cuidado especial. Não vendemos apenas produtos – 
+                entregamos experiências personalizadas que superam as expectativas.
               </p>
             </div>
 
@@ -157,7 +155,7 @@ export default function About() {
             >
               {stats.map((stat, index) => (
                 <div key={index} className="stat-item text-center lg:text-left">
-                  <stat.icon className="w-8 h-8 text-[#f2fe6f] mb-3 mx-auto lg:mx-0" />
+                  <stat.icon className="w-8 h-8 text-[#ffde59] mb-3 mx-auto lg:mx-0" />
                   <p className="font-display text-3xl sm:text-4xl text-white mb-1">
                     <span className="stat-value">0</span>
                     {stat.suffix}
@@ -172,13 +170,13 @@ export default function About() {
 
           <div ref={imageRef} className="relative">
             <div className="relative">
-              <div className="absolute inset-0 bg-[#f2fe6f]/10 blur-[80px] rounded-full" />
+              <div className="absolute inset-0 bg-[#ffde59]/10 blur-[80px] rounded-full" />
               <img
                 src="/about-figure.jpg"
                 alt="Figura Sobre Nós"
                 className="relative z-10 w-full rounded-2xl"
               />
-              <div className="absolute -top-6 -right-6 bg-[#f2fe6f] text-black p-4 rounded-xl shadow-lg animate-bounce">
+              <div className="absolute -top-6 -right-6 bg-[#ffde59] text-black p-4 rounded-xl shadow-lg animate-bounce">
                 <Award className="w-8 h-8" />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white text-black p-4 rounded-xl shadow-lg animate-bounce delay-500">

@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ShoppingCart, Star, Eye } from 'lucide-react';
+import { MessageCircle, Star, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { products, categories } from '@/data/products';
-import { useCartStore } from '@/store/cartStore';
 import type { Product } from '@/types';
+
+const WHATSAPP_NUMBER = '5511999999999';
+
+const getWhatsAppURL = (productName: string) => {
+  const msg = `Olá! Tenho interesse no produto: ${productName}. Poderia me passar mais informações e o orçamento?`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +23,7 @@ interface ProductCardProps {
 
 function ProductCard({ product, index, onQuickView }: ProductCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const { addItem } = useCartStore();
+  // WhatsApp redirect
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -49,13 +55,13 @@ function ProductCard({ product, index, onQuickView }: ProductCardProps) {
       onMouseLeave={handleMouseLeave}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="card-3d relative bg-[#252525] rounded-2xl overflow-hidden border border-white/5 transition-all duration-300 hover:border-[#f2fe6f]/30 hover:shadow-lg hover:shadow-[#f2fe6f]/10">
+      <div className="card-3d relative bg-[#252525] rounded-2xl overflow-hidden border border-white/5 transition-all duration-300 hover:border-[#ffde59]/30 hover:shadow-lg hover:shadow-[#ffde59]/10">
         {product.badge && (
           <div className="absolute top-4 left-4 z-10">
             <span
               className={`px-3 py-1 rounded-full text-xs font-bold ${
                 product.badge === 'Mais Vendido'
-                  ? 'bg-[#f2fe6f] text-black'
+                  ? 'bg-[#ffde59] text-black'
                   : product.badge === 'Novo'
                   ? 'bg-blue-500 text-white'
                   : 'bg-red-500 text-white'
@@ -74,13 +80,14 @@ function ProductCard({ product, index, onQuickView }: ProductCardProps) {
           />
 
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-            <Button
-              size="icon"
-              className="bg-[#f2fe6f] text-black hover:bg-[#e5f160] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-              onClick={() => addItem(product)}
+            <a
+              href={getWhatsAppURL(product.name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 bg-[#ffde59] text-black hover:bg-[#f5d44e] rounded-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
             >
-              <ShoppingCart className="w-5 h-5" />
-            </Button>
+              <MessageCircle className="w-5 h-5" />
+            </a>
             <Button
               size="icon"
               variant="outline"
@@ -96,7 +103,7 @@ function ProductCard({ product, index, onQuickView }: ProductCardProps) {
           <p className="text-[#777777] text-xs font-accent uppercase tracking-wider mb-2">
             {product.category}
           </p>
-          <h3 className="font-display text-xl text-white mb-2 group-hover:text-[#f2fe6f] transition-colors">
+          <h3 className="font-display text-xl text-white mb-2 group-hover:text-[#ffde59] transition-colors">
             {product.name}
           </h3>
 
@@ -107,7 +114,7 @@ function ProductCard({ product, index, onQuickView }: ProductCardProps) {
                   key={i}
                   className={`w-4 h-4 ${
                     i < Math.floor(product.rating)
-                      ? 'text-[#f2fe6f] fill-[#f2fe6f]'
+                      ? 'text-[#ffde59] fill-[#ffde59]'
                       : 'text-[#777777]'
                   }`}
                 />
@@ -117,7 +124,7 @@ function ProductCard({ product, index, onQuickView }: ProductCardProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="font-display text-2xl text-[#f2fe6f]">
+            <span className="font-display text-2xl text-[#ffde59]">
               R${product.price.toFixed(2)}
             </span>
             {product.originalPrice && (
@@ -198,15 +205,14 @@ export default function Products({ onQuickView }: ProductsProps) {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-12 lg:mb-16">
-          <p className="text-[#f2fe6f] font-accent text-sm tracking-[0.3em] uppercase mb-4">
-            Compre Agora
+          <p className="text-[#ffde59] font-accent text-sm tracking-[0.3em] uppercase mb-4">
+            Catálogo de Produtos
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
-            COLEÇÃO M² VERSE
+            NOSSOS PRODUTOS
           </h2>
           <p className="text-[#777777] text-base sm:text-lg max-w-2xl mx-auto font-body">
-            Obras-primas selecionadas para o colecionador moderno. Cada figura é
-            criada com precisão e paixão.
+            Explore nosso catálogo completo. Clique em qualquer produto para solicitar um orçamento direto pelo WhatsApp.
           </p>
         </div>
 
@@ -217,7 +223,7 @@ export default function Products({ onQuickView }: ProductsProps) {
               onClick={() => setActiveCategory(category.name)}
               className={`px-5 py-2 rounded-full font-accent text-sm transition-all duration-300 ${
                 activeCategory === category.name
-                  ? 'bg-[#f2fe6f] text-black'
+                  ? 'bg-[#ffde59] text-black'
                   : 'bg-[#252525] text-white/70 hover:bg-[#333] hover:text-white'
               }`}
             >
@@ -242,12 +248,15 @@ export default function Products({ onQuickView }: ProductsProps) {
         </div>
 
         <div className="text-center mt-12">
-          <Button
-            variant="outline"
-            className="border-[#f2fe6f] text-[#f2fe6f] hover:bg-[#f2fe6f] hover:text-black px-8 py-6 font-accent"
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Gostaria de ver o catálogo completo de produtos.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-[#ffde59] text-[#ffde59] hover:bg-[#ffde59] hover:text-black px-8 py-4 font-accent rounded-md transition-all duration-300 font-semibold"
           >
-            Ver Todos os Produtos
-          </Button>
+            <MessageCircle className="w-5 h-5" />
+            Solicitar Catálogo Completo
+          </a>
         </div>
       </div>
     </section>
